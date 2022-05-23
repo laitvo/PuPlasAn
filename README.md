@@ -1,4 +1,4 @@
-#PuPlasAn (**Pu**lsed **Plas**ma **An**alyser)
+# PuPlasAn (**Pu**lsed **Plas**ma **An**alyser)
 ## Public ReadMe
 
 The program is responsible for a complete numerical analysis of pulsed plasma spectra, i. e. filtering (`filters.py`), estimating noise level (`noise.py`) and spectral baseline (`bline.py`), and detecting spectral lines and/or bands (`pdetect.py`). The peaks detected may then undergo deterministic or stochastic numerical fitting of line or band profiles (`pfit.py`). Optical depth and spectral line broadening issues may be dealt with by using `broad.py`.
