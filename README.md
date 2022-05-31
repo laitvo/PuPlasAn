@@ -9,3 +9,6 @@ Based on similar relations and approaches, `abund.py` performs stepwise elementa
 Finally, `rate.py` and `mechanism.py` calculate reaction rate coefficients based on user-defined data (`rdbase.csv` with a ReadMe file) and cover simpler kinetic modelling of the plasma systems investigated with time-resolved spectroscopic methods.
 
 The program was developed by Petr Kubelík, Ph. D., and Vojtěch Laitl at the J. Heyrovský Institute of Physical Chemistry, Czech Academy of Sciences, in 2022 . From there on, it is distributed under Apache License 2.0. All details to particular functions and program modules are to be found in the above code scripts and in the example section.
+
+## Dependencies
+The program scripts above are to be found in */puplasan* and are elaborated in */example* folders, respectively. Complete documentation is shown in */package/docs/build/html* folder and may be viewed by running `index.html`
