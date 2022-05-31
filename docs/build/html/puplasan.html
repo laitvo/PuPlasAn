@@ -1,0 +1,2112 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>puplasan package &#8212; PuPlasAn 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="puplasan" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="puplasan-package">
+<h1>puplasan package<a class="headerlink" href="#puplasan-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-puplasan.abund">
+<span id="puplasan-abund-module"></span><h2>puplasan.abund module<a class="headerlink" href="#module-puplasan.abund" title="Permalink to this headline">¶</a></h2>
+<section id="abundances-module">
+<h3>Abundances module<a class="headerlink" href="#abundances-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains functions for estimation the abundances
+of the species detected in the UV/vis spectrum of the LIBS plasma.
+The computations are based on the CF-LIBS method.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.abund.c">
+<span class="sig-prename descclassname"><span class="pre">puplasan.abund.</span></span><span class="sig-name descname"><span class="pre">c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aij</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.abund.c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the abundance of the given species based on pyrometric plot regression</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>1-D list/array</em>) – <p>array containing the peak positions
+<em>mu</em> must be wavelength in nanometers
+a : 1-D list/array</p>
+<blockquote>
+<div><p>array containing the integral intensity of the corresponding peaks</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>aij</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the Einstein’s A coefficients of the investigated/detected transitions</dt><dd><p><em>aij</em> must be in reciprocal seconds</p>
+</dd>
+<dt>gu: 1-D list/array</dt><dd><p>array containing the upper level degeneracy of the investigated/detected transitions</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the upper level energy of the investigated/detected transitions</dt><dd><p><em>eu</em> must be wavenumber in reciprocal centimeters</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – value of the excitation temperature of the given species within an ionization state given</p></li>
+<li><p><strong>Q</strong> (<em>float</em>) – value of the partition function</p></li>
+<li><p><strong>F</strong> (<em>float</em>) – opacity calibration parameter
+<em>F</em> must be a dimensionless number
+by default, <em>F</em> equals <em>1.0</em> for the needs of CF-LIBS analysis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>c</strong> (<em>float</em>) – abundance of the given species within an ionization state given</p></li>
+<li><p><strong>c_stddev</strong> (<em>float</em>) – mean square error of abundance estimation given for a defined species and ionization state</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.abund.q">
+<span class="sig-prename descclassname"><span class="pre">puplasan.abund.</span></span><span class="sig-name descname"><span class="pre">q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_stddev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.abund.q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the partition function of the given species. Its value is evaluated as a partition sum corresponding to all possible transitions given for a species and its ionization state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>g0</strong> (<em>float</em>) – ground state degeneracy of the species investigated</p></li>
+<li><p><strong>gu</strong> (<em>1-D list/array</em>) – array containing the upper level degeneracy of all possible transitions investigated</p></li>
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energy of all possible transitions investigated
+<em>eu</em> must be wavenumber in reciprocal centimeters</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – value of the excitation temperature of the given species within an ionization state given</p></li>
+<li><p><strong>T_stddev</strong> (<em>float</em>) – mean square error of excitation temperature estimation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Q</strong> (<em>float</em>) – value of the partition function</p></li>
+<li><p><strong>Q_stddev</strong> (<em>float</em>) – partition function uncertainty</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.assign">
+<span id="puplasan-assign-module"></span><h2>puplasan.assign module<a class="headerlink" href="#module-puplasan.assign" title="Permalink to this headline">¶</a></h2>
+<p>Assignment module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.assign.assign">
+<span class="sig-prename descclassname"><span class="pre">puplasan.assign.</span></span><span class="sig-name descname"><span class="pre">assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">px1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dx_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.assign.assign" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function assigns the closest values form <em>px1</em> and <em>px2</em>.</p>
+<dl class="simple">
+<dt>Input(s):</dt><dd><ul class="simple">
+<li><p>px1: list or array (1d) of floats, peaks positions (experiment)</p></li>
+<li><p>px2: list or array (1d) of floats, peaks positions (predictions)</p></li>
+</ul>
+</dd>
+<dt>Output(s):</dt><dd><ul class="simple">
+<li><p>list of tuples with assigned indexes corresponding to the values
+in the input arrays <em>px1</em> and <em>px2</em> (e.g.: [(5,9), (6,12)…])</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-puplasan.bline">
+<span id="puplasan-bline-module"></span><h2>puplasan.bline module<a class="headerlink" href="#module-puplasan.bline" title="Permalink to this headline">¶</a></h2>
+<section id="baseline-correction-module">
+<h3>Baseline correction module<a class="headerlink" href="#baseline-correction-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains functions for determination the base line
+of experimental data (e.g. UV/VIS spectrum). The base line is obtained
+by iterative removing the high frequency signal and interpolating
+the remaining points by the spline method.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bline.base">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bline.</span></span><span class="sig-name descname"><span class="pre">base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulloutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbfun</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbfunargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remrate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bline.base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the baseline of the input data <em>y</em> using an iterative removing
+of the high frequency signal. The method is based on application of moving
+average smoothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent input data. Must be increasing.</p></li>
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array of dependent input data, of the same length as <em>x</em>.</p></li>
+<li><p><strong>wpn</strong> (<em>int</em>) – Number of the adjacent values of <em>y</em> averaged. <em>wpn</em> must be an odd
+number.</p></li>
+<li><p><strong>noise</strong> (<em>float</em><em> or </em><em>1-D numpy.array</em>) – Estimated noise level of the data in the <em>y</em> array. If <em>noise</em>
+is an array, it must be of the same length as x (x-dependent noise).</p></li>
+<li><p><strong>rem</strong> (<em>float</em>) – During the calculation the elements of <em>y</em> containing the high
+frequency signal are removed iteratively. The iterations are stopped
+when the number of the remining elements in the <em>y</em> is equal or lower
+then lenx*(1. - rem), where lenx is the original length
+of the <em>y</em> array.</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – Degree of the smoothing spline. Must be &lt;= 5. Default is k=1,
+a linear spline.</p></li>
+<li><p><strong>fulloutput</strong> (<em>bool</em>) – Influences the output (see the <em>Returns</em> section).
+Default value is <em>False</em>.</p></li>
+<li><p><strong>cbfun</strong> (callable/None, optional <em>cbfun(b_inds, ma, *cbfunargs)</em>) – A callback function executed at the end of each iteration
+(<em>cbfun(b_inds, ma, *cbfunargs)</em>),
+where <em>b_inds</em> is an numpy.array containing the actual indexes
+of the array <em>y</em> which are used to construct the baseline,
+<em>ma</em> is an array of smoothed values of <em>y</em> corresponding to the indexes
+in the <em>b_inds</em> array</p></li>
+<li><p><strong>cbfunargs</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Extra positional arguments passed to <em>cbfun</em></p></li>
+<li><p><strong>remrate</strong> (<em>float</em>) – A number in (1,inf&gt; range (reasonable values are
+between 1.05 and 3). The higher is the value the more signal points
+are removed during one iteratoion (default value is equal to 1.5)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>If *fulloutput</em> is <em>True</em>, returns a numpy.array of the same length as <em>x*</em></p></li>
+<li><p><em>containing the *y</em> data base line, the instance of the <em>scipy.interpolate.</em></p></li>
+<li><p><em>fitpack2.LSQUnivariateSpline</em> class and an numpy.array of the indexes*</p></li>
+<li><p><em>of *y</em> corresponding to the base line with the high frequency*</p></li>
+<li><p><em>signal removed.</em></p></li>
+<li><p><em>Else returns a numpy.array of the same length as *x</em> containing*</p></li>
+<li><p><em>the *y</em> data base line.*</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.bolplot">
+<span id="puplasan-bolplot-module"></span><h2>puplasan.bolplot module<a class="headerlink" href="#module-puplasan.bolplot" title="Permalink to this headline">¶</a></h2>
+<section id="boltzmann-plot-module">
+<h3>Boltzmann plot module<a class="headerlink" href="#boltzmann-plot-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains functions which determine the excitation and
+free electron temperature of the system using the experimental UV/VIS spectrum.
+All the computations are based on the approximation of the local thermodynamic equilibrium (LTE).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bolplot.T">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bolplot.</span></span><span class="sig-name descname"><span class="pre">T</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logI</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bolplot.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the pyrometric plot regression to estimate excitation temperature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the upper level energy of the investigated/detected transitions</dt><dd><p><em>eu</em> must be wavenumber in reciprocal centimeters</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>logI</strong> (<em>1-D list/array</em>) – array containing the values of the Boltzmann’s logarithm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T</strong> – excitation temperature for the given species and its transitions defined
+<em>T</em> is defined in kelvins</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bolplot.T_discrim">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bolplot.</span></span><span class="sig-name descname"><span class="pre">T_discrim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deltaT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deltaT_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deltaT_max</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bolplot.T_discrim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a simpler distance point discrimination analysis in the Boltzmann plane defined for a given species and ionization state to obtain a statistically enhanced excitation temperature value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the upper level energy of the investigated/detected transitions</dt><dd><p><em>eu</em> must be wavenumber in reciprocal centimeters</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>logI</strong> (<em>1-D list/array</em>) – <p>array containing the values of the Boltzmann’s logarithm
+T0 : float</p>
+<blockquote>
+<div><p>initial assumption on the excitation temperature value</p>
+</div></blockquote>
+<p><em>T0</em> must be temperature in kelvins</p>
+</p></li>
+<li><p><strong>deltaT</strong> (<em>float</em>) – temperature difference limit
+<em>deltaT</em> must be temperature in kelvins</p></li>
+<li><p><strong>deltaT_min</strong> (<em>float</em>) – minimal temperature increment by which to enhance the Boltzmann plot
+<em>deltaT_min</em> must be temperature in kelvins</p></li>
+<li><p><strong>deltaT_min</strong> – minimal temperature increment by which to enhance the Boltzmann plot
+<em>deltaT_min</em> must be temperature in kelvins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>T</strong> (<em>float</em>) – excitation temperature
+note that if <em>T</em> equals <em>theta_min</em> or <em>theta_max</em> the test was probably not decisive</p></li>
+<li><p><strong>T_stddev</strong> (<em>float</em>) – mean square error of the excitation temperature</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bolplot.T_electron">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bolplot.</span></span><span class="sig-name descname"><span class="pre">T_electron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_SI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_SII</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_SI_stddev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_SII_stddev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bolplot.T_electron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an empiric calculation of the electron temperature expected to fulfill the equilibrium between neutral and single-ionized species</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eu</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the upper level energy of the investigated/detected transitions</dt><dd><p><em>eu</em> must be wavenumber in reciprocal centimeters</p>
+</dd>
+<dt>a<span class="classifier">1-D list/array</span></dt><dd><p>array containing the integral intensity of the corresponding peaks</p>
+</dd>
+<dt>T_SI<span class="classifier">float</span></dt><dd><p>value of the excitation temperature of neutral state of the investigated species</p>
+</dd>
+</dl>
+<p><em>T_SI</em> and <em>T_SII</em> must be given in consistent units
+T_SII : float</p>
+<blockquote>
+<div><p>value of the excitation temperature of single-ionized state of the investigated species</p>
+</div></blockquote>
+<p><em>T_SI</em> and <em>T_SII</em> must be given in consistent units
+T_SI_stddev : float</p>
+<blockquote>
+<div><p>mean square error of the excitation temperature of neutral state of the investigated species</p>
+</div></blockquote>
+<p><em>T_SI_stddev</em> and <em>T_SII_stddev</em> must be given in consistent units
+T_SII_stddev : float</p>
+<blockquote>
+<div><p>mean square error of the excitation temperature of single-ionized state of the investigated species</p>
+</div></blockquote>
+<p><em>T_SI_stddev</em> and <em>T_SII_stddev</em> must be given in consistent units</p>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>T_e</strong> – expected electron temperature value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bolplot.logbp">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bolplot.</span></span><span class="sig-name descname"><span class="pre">logbp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aij</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bolplot.logbp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Boltzmann’s logarithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the peak positions.</dt><dd><p><em>mu</em> must be wavelength in nanometers</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>a</strong> (<em>1-D list/array</em>) – array containing the integral intensity of the corresponding peaks</p></li>
+<li><p><strong>aij</strong> (<em>1-D list/array</em>) – <dl class="simple">
+<dt>array containing the Einstein’s A coefficients of the investigated/detected transitions</dt><dd><p><em>aij</em> must be in reciprocal seconds</p>
+</dd>
+<dt>gu: 1-D list/array</dt><dd><p>array containing the upper level degeneracy of the investigated/detected transitions</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logI</strong> – Boltzmann’s logarithm of the integral intensity used for the estimation
+excitation temperature estimation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.bolplot.temp">
+<span class="sig-prename descclassname"><span class="pre">puplasan.bolplot.</span></span><span class="sig-name descname"><span class="pre">temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.bolplot.temp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs simpler nonlinear numerical optimization of an experimental spectrum on generalized LTE conditions using which a single excitation temperature is obtained</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta_min</strong> (<em>float</em>) – <dl class="simple">
+<dt>infimum of a temperature range within which the optimum si sought for</dt><dd><p><em>theta_min</em> must be temperature in kelvins</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>theta_max</strong> (<em>float</em>) – <dl class="simple">
+<dt>supremum of a temperature range within which the optimum si sought for</dt><dd><p><em>theta_max</em> must be temperature in kelvins</p>
+</dd>
+<dt>spec<span class="classifier">list of strings</span></dt><dd><p>list containing labels of the investigated species in a form of “S I” etc.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>lines_all</strong> (<em>list of arrays</em>) – <p>list of arrays containing the database inputs for all investigated/detected species
+C : 1-D list/array</p>
+<blockquote>
+<div><p>list of abundances corresponding to the investigated species of an ionization state given</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Q<span class="classifier">1-D list/array</span></dt><dd><p>list of partition functions corresponding to the investigated species of an ionization state given</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>px</strong> (<em>1-D list/array</em>) – array containing the positions of the detected peaks
+<em>px</em> must be wavelength in nanometers</p></li>
+<li><p><strong>py</strong> (<em>1-D list/array</em>) – array containing integral intensities of the detected peaks</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>T</strong> (<em>float</em>) – excitation temperature
+note that if <em>T</em> equals <em>theta_min</em> or <em>theta_max</em> the test was probably not decisive</p></li>
+<li><p><strong>T_stddev</strong> (<em>float</em>) – mean square error of the excitation temperature</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.broad">
+<span id="puplasan-broad-module"></span><h2>puplasan.broad module<a class="headerlink" href="#module-puplasan.broad" title="Permalink to this headline">¶</a></h2>
+<section id="broadening-module">
+<h3>Broadening module<a class="headerlink" href="#broadening-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains functions which describe the broadening of the
+spectral lines detected in the UV/vis spectrum and compute the basic parameters
+related to the line broadening, i.e. the Stark width, the electron density and the self-absorption coefficient.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.broad.assign_stark">
+<span class="sig-prename descclassname"><span class="pre">puplasan.broad.</span></span><span class="sig-name descname"><span class="pre">assign_stark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.broad.assign_stark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ascribes the FWHM parameters to the tabulated Stark widths</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fwhm</strong> (<em>1-D list/array</em>) – array containing the FWHM of the peaks related to the lorentzian profile
+<em>fwhm</em> must be in nanometers</p></li>
+<li><p><strong>r</strong> (<em>1-D list/array</em>) – array containing the peak positions of the lines with tabulated Stark widths
+<em>r</em> must be wavelength in nanometers</p></li>
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array containing the peak positions
+<em>x</em> must be wavelength in nanometers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma_stark</strong> – the array containing the ascribed Stark widths</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.broad.ne2ws">
+<span class="sig-prename descclassname"><span class="pre">puplasan.broad.</span></span><span class="sig-name descname"><span class="pre">ne2ws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.broad.ne2ws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the unknown Stark widths</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fwhm</strong> (<em>1-D list/array</em>) – array containing the FWHM of detected peaks.
+<em>FWHM</em> must be in nanometers.</p></li>
+<li><p><strong>Ne</strong> (<em>float</em>) – value of the electron density.
+<em>Ne</em> must be in reciprocal cubic centimeters.</p></li>
+<li><p><strong>error_Ne</strong> (<em>float</em>) – value of the electron density estimation error.
+<em>error_Ne</em> must be in reciprocal cubic centimeters.</p></li>
+<li><p><strong>full_output</strong> (<em>bool</em>) – Influences the output (see the <em>Returns</em> section)
+Default value is <em>False</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><p><em>if full_output=False (default)</em> –</p>
+<dl class="simple">
+<dt>ws<span class="classifier">numpy.array</span></dt><dd><p>array containing the estimated Stark widths
+<em>ws</em> is estimated in nanometers</p>
+</dd>
+<dt>error_ws<span class="classifier">numpy.array</span></dt><dd><p>uncertainty of the Stark widths estimation
+<em>error_ws</em> is estimated in nanometers</p>
+</dd>
+</dl>
+</li>
+<li><p><em>if full_output=True</em> –</p>
+<dl class="simple">
+<dt>ws<span class="classifier">numpy.array</span></dt><dd><p>array containing the estimated Stark widths
+<em>ws</em> is estimated in nanometers</p>
+</dd>
+<dt>error_ws<span class="classifier">numpy.array</span></dt><dd><p>uncertainty of the Stark widths estimation
+<em>error_ws</em> is estimated in nanometers</p>
+</dd>
+</dl>
+<p>If <em>fulloutput</em> is <em>True</em>, draws additionally a plot of the Stark widths over FWHM
+including the experimental data.</p>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.broad.self_absorption">
+<span class="sig-prename descclassname"><span class="pre">puplasan.broad.</span></span><span class="sig-name descname"><span class="pre">self_absorption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_ws</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.broad.self_absorption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the self-absorption coefficient of the given peaks</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fwhm</strong> (<em>1-D list/array</em>) – array containing the FWHM of the peaks
+<em>FWHM</em> must be in nanometers</p></li>
+<li><p><strong>ws</strong> (<em>1-D list/array</em>) – array containing the Stark widths
+<em>ws</em> must be in nanometers</p></li>
+<li><p><strong>Ne</strong> (<em>float</em>) – value of the electron density
+<em>Ne</em> must be in reciprocal cubic centimeters</p></li>
+<li><p><strong>error_Ne</strong> (<em>float</em>) – value of the electron density estimation error.
+<em>error_Ne</em> must be in reciprocal cubic centimeters</p></li>
+<li><p><strong>error_ws</strong> (<em>numpy.array</em>) – uncertainty of the Stark widths estimation
+<em>error_ws</em> must be in nanometers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>sa</strong> (<em>numpy.array</em>) – self-absorption coefficients of the given peaks</p></li>
+<li><p><strong>error_sa</strong> (<em>numpy.array</em>) – uncertainty of the Stark coefficients estimation</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.broad.stark2ne">
+<span class="sig-prename descclassname"><span class="pre">puplasan.broad.</span></span><span class="sig-name descname"><span class="pre">stark2ne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwhm_stark</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_stark</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulloutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.broad.stark2ne" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the electron density</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fwhm_stark</strong> (<em>1-D list/array</em>) – array containing the FWHM of detected peaks
+related to the lorentzian profile
+<em>FWHM</em> must be in nanometers</p></li>
+<li><p><strong>width_stark</strong> (<em>1-D list/array</em>) – array containing the assigned tabulated Stark widths</p></li>
+<li><p><strong>full_output</strong> (<em>bool</em>) – Influences the output (see the <em>Returns</em> section)
+Default value is <em>False</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><p><em>if full_output=False (default)</em> –</p>
+<dl class="simple">
+<dt>Ne<span class="classifier">float</span></dt><dd><p>value of the electron density.
+<em>Ne</em> is estimated in reciprocal cubic centimeters</p>
+</dd>
+<dt>error_Ne<span class="classifier">float</span></dt><dd><p>uncertainty of the electron density (<em>error_Ne</em>)
+<em>error_Ne</em> is estimated in reciprocal cubic centimeters</p>
+</dd>
+</dl>
+</li>
+<li><p><em>if full_output=True</em> –</p>
+<dl class="simple">
+<dt>Ne<span class="classifier">float</span></dt><dd><p>value of the electron density
+<em>Ne</em> is estimated in reciprocal cubic centimeters</p>
+</dd>
+<dt>error_Ne<span class="classifier">float</span></dt><dd><p>uncertainty of the electron density (<em>error_Ne</em>)
+<em>error_Ne</em> is estimated in reciprocal cubic centimeters</p>
+</dd>
+</dl>
+<p>If <em>fulloutput</em> is <em>True</em>, draws additionally a plot of the Stark widths over FWHM whose
+linear regression is related to the electron density</p>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.broad.sw">
+<span class="sig-prename descclassname"><span class="pre">puplasan.broad.</span></span><span class="sig-name descname"><span class="pre">sw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.broad.sw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the theoretical Stark widths based on the database input and a parametrical recursive relation</p>
+<p>log(w) = a0 + a1 log(T) + a2 log{2}(T)</p>
+<p>with T being a termodynamic temperature for which the database defines w</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a0</strong> (<em>float OR 1-D list/array</em>) – absolute member of the recursive relation
+<em>a0</em> should be read directly from the program database</p></li>
+<li><p><strong>a1</strong> (<em>float OR 1-D list/array</em>) – linear logaritm memember of the recursive relation
+<em>a1</em> should be read directly from the program database</p></li>
+<li><p><strong>a2</strong> (<em>quadratic logarithm memember of the recursive relation</em>) – <em>a2</em> should be read directly from the program database</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>width_stark</strong> – assigned tabulated Stark widths in nanometers</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float OR 1-D list/array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.filters">
+<span id="puplasan-filters-module"></span><h2>puplasan.filters module<a class="headerlink" href="#module-puplasan.filters" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.filters.smooth_ma">
+<span class="sig-prename descclassname"><span class="pre">puplasan.filters.</span></span><span class="sig-name descname"><span class="pre">smooth_ma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.filters.smooth_ma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moving average smoothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – data to smooth</p></li>
+<li><p><strong>wpn</strong> (<em>int</em>) – Number of the adjacent values averaged. <em>wpn</em> must be an odd number.
+If the integer is even, the <em>wpn</em> parameter is set to <em>wpn</em> + 1
+automatically and UserWarning is raised.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of the smoothed input data <em>y</em>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1-D numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-puplasan.mechanism">
+<span id="puplasan-mechanism-module"></span><h2>puplasan.mechanism module<a class="headerlink" href="#module-puplasan.mechanism" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.mechanism.rate_coefficients">
+<span class="sig-prename descclassname"><span class="pre">puplasan.mechanism.</span></span><span class="sig-name descname"><span class="pre">rate_coefficients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdbase_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.mechanism.rate_coefficients" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts reaction database data to a function calculating reaction rate coefficients</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rdbase_path</strong> (<em>string</em>) – file path to a filled-in database
+the database mut be an ascii-text file and must meet the README-defined format</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>lambda_k</strong> – function calculating the rate coefficients of all reactions involved
+<em>T</em>, <em>Te</em>, and <em>ne</em> are required as numerical inputs
+<em>T</em> given in kelvins is the (translational) plasma temperature
+<em>Te</em> given in kelvins is the free-electron temperature
+<em>ne</em> is the electron number density and must be given in units corresponding to <em>k</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>python lambda function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.mechanism.reac">
+<span class="sig-prename descclassname"><span class="pre">puplasan.mechanism.</span></span><span class="sig-name descname"><span class="pre">reac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S_lhs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.mechanism.reac" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assembles a reaction mechanism in a form of an integrable ODE system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c0</strong> (<em>1-D list/array</em>) – array containing the initial concentrations of the species involved</p></li>
+<li><p><strong>t</strong> (<em>numpy.array</em>) – array containing the time axis along which the system is integrated</p></li>
+<li><p><strong>S</strong> (<em>numpy.ndarray</em>) – stoichiometric matrix of the mechanism</p></li>
+<li><p><strong>S_lhs</strong> (<em>numpy.ndarray</em>) – (pseudo)stoichiometric matrix describing the left-hand sides of the chemical transformations involved</p></li>
+<li><p><strong>k</strong> (<em>1-D list/array</em>) – array containing the rate coefficients of the chemical transformations involved
+<em>k</em>, <em>t</em>, and <em>N</em> must appear in consistent units</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>d</strong> – reaction rate vector to be integrated</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.mechanism.reac_min">
+<span class="sig-prename descclassname"><span class="pre">puplasan.mechanism.</span></span><span class="sig-name descname"><span class="pre">reac_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Te</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S_lhs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.mechanism.reac_min" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the filtered database input and assembles a function for rate coefficient calculation based on experimental data</p>
+<dl class="simple">
+<dt>init_guess<span class="classifier">1-D list/array</span></dt><dd><p>list of initial guess values of rate coefficient parameters for the reactions to be optimized</p>
+</dd>
+<dt>lambda_k<span class="classifier">python lambda function</span></dt><dd><p>function calculating the rate coefficients of all reactions involved
+<em>T</em>, <em>Te</em>, and <em>ne</em> are required as numerical inputs
+<em>T</em> given in kelvins is the (translational) plasma temperature
+<em>Te</em> given in kelvins is the free-electron temperature
+<em>ne</em> is the electron number density and must be given in units corresponding to <em>k</em></p>
+</dd>
+<dt>T<span class="classifier">float</span></dt><dd><p>kinetic temperature of the system
+<em>T</em> must be temperature in kelvins</p>
+</dd>
+<dt>Te<span class="classifier">float</span></dt><dd><p>electron temperature of the system
+<em>Te</em> must be temperature in kelvins</p>
+</dd>
+<dt>Ne<span class="classifier">float</span></dt><dd><p>electron number density of the system
+<em>Ne</em> must be unit-consistent with the rate coefficients dimension (preferably reciprocal cubic centimeters)</p>
+</dd>
+<dt>c0<span class="classifier">1-D list/array</span></dt><dd><p>array containing the initial concentrations of the species involved
+<em>c0</em> must be unit-consistent with the rate coefficients dimension (preferably reciprocal cubic centimeters)</p>
+</dd>
+<dt>t<span class="classifier">1-D list/array</span></dt><dd><p>time axis along which to integrate the model
+<em>t</em> must be time in seconds</p>
+</dd>
+<dt>t_i<span class="classifier">1-D list/array</span></dt><dd><p>time stamps corresponding to measurements/estimations of <em>chi_ref</em>
+<em>t_i</em> must be time in seconds</p>
+</dd>
+<dt>S<span class="classifier">numpy.ndarray</span></dt><dd><p>stoichiometric matrix of the mechanism</p>
+</dd>
+<dt>S_lhs<span class="classifier">numpy.ndarray</span></dt><dd><p>(pseudo)stoichiometric matrix describing the left-hand sides of the chemical transformations involved</p>
+</dd>
+<dt>species<span class="classifier">list</span></dt><dd><p>ordered list of species involved in the kinetic model</p>
+</dd>
+<dt>k<span class="classifier">list</span></dt><dd><p>list of rate coefficient formulae or references for the former</p>
+</dd>
+<dt>species_ref<span class="classifier">string</span></dt><dd><p>label of a reference species the mixing ratio of which is optimized (preferably buffer species or those in large excesss)</p>
+</dd>
+<dt>chi_ref<span class="classifier">1-D list/array</span></dt><dd><p>list of reference mixing ratios of the species investigated within optimized reactions</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>norm_rsd<span class="classifier">float</span></dt><dd><p>norm of residues to be optimized</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.mechanism.reac_opt">
+<span class="sig-prename descclassname"><span class="pre">puplasan.mechanism.</span></span><span class="sig-name descname"><span class="pre">reac_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init_guess</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lambda_k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Te</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S_lhs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">campaign</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rdbase_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.mechanism.reac_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimizes a reaction mechanism and prints a refined database file</p>
+<dl class="simple">
+<dt>init_guess<span class="classifier">1-D list/array</span></dt><dd><p>list of initial guess values of rate coefficient parameters for the reactions to be optimized</p>
+</dd>
+<dt>lambda_k<span class="classifier">python lambda function</span></dt><dd><p>function calculating the rate coefficients of all reactions involved
+<em>T</em>, <em>Te</em>, and <em>ne</em> are required as numerical inputs
+<em>T</em> given in kelvins is the (translational) plasma temperature
+<em>Te</em> given in kelvins is the free-electron temperature
+<em>ne</em> is the electron number density and must be given in units corresponding to <em>k</em></p>
+</dd>
+<dt>T<span class="classifier">float</span></dt><dd><p>kinetic temperature of the system
+<em>T</em> must be temperature in kelvins</p>
+</dd>
+<dt>Te<span class="classifier">float</span></dt><dd><p>electron temperature of the system
+<em>Te</em> must be temperature in kelvins</p>
+</dd>
+<dt>Ne<span class="classifier">float</span></dt><dd><p>electron number density of the system
+<em>Ne</em> must be unit-consistent with the rate coefficients dimension (preferably reciprocal cubic centimeters)</p>
+</dd>
+<dt>c0<span class="classifier">1-D list/array</span></dt><dd><p>array containing the initial concentrations of the species involved
+<em>c0</em> must be unit-consistent with the rate coefficients dimension (preferably reciprocal cubic centimeters)</p>
+</dd>
+<dt>t<span class="classifier">1-D list/array</span></dt><dd><p>time axis along which to integrate the model
+<em>t</em> must be time in seconds</p>
+</dd>
+<dt>t_i<span class="classifier">1-D list/array</span></dt><dd><p>time stamps corresponding to measurements/estimations of <em>chi_ref</em>
+<em>t_i</em> must be time in seconds</p>
+</dd>
+<dt>S<span class="classifier">numpy.ndarray</span></dt><dd><p>stoichiometric matrix of the mechanism</p>
+</dd>
+<dt>S_lhs<span class="classifier">numpy.ndarray</span></dt><dd><p>(pseudo)stoichiometric matrix describing the left-hand sides of the chemical transformations involved</p>
+</dd>
+<dt>species<span class="classifier">list</span></dt><dd><p>ordered list of species involved in the kinetic model</p>
+</dd>
+<dt>species_ref<span class="classifier">string</span></dt><dd><p>label of a reference species the mixing ratio of which is optimized (preferably buffer species or those in large excesss)</p>
+</dd>
+<dt>chi_ref<span class="classifier">1-D list/array</span></dt><dd><p>list of reference mixing ratios of the species investigated within optimized reactions</p>
+</dd>
+<dt>campaign<span class="classifier">string</span></dt><dd><p>label of the experimental campaign solved</p>
+</dd>
+<dt>rdbase_path<span class="classifier">string</span></dt><dd><p>file path to a filled-in database
+the database mut be an ascii-text file and must meet the README-defined format</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>k_optimized<span class="classifier">list</span></dt><dd><p>list of optimized rate coefficient formulae or references for the former</p>
+</dd>
+<dt>A_optimized<span class="classifier">list</span></dt><dd><p>list of optimized Arrhenius pre-exponential factors (floating point numbers)</p>
+</dd>
+<dt>n_optimized<span class="classifier">list</span></dt><dd><p>list of optimized Arrhenius power parameters (floating point numbers)</p>
+</dd>
+<dt>Ea_optimized<span class="classifier">list</span></dt><dd><p>list of optimized activation energies of individual reactions (floating point numbers)
+<em>Ea</em> is activation energy in electronvolts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.mechanism.stoichiometric_matrix">
+<span class="sig-prename descclassname"><span class="pre">puplasan.mechanism.</span></span><span class="sig-name descname"><span class="pre">stoichiometric_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rdbase_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.mechanism.stoichiometric_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a stoichiometric matrix of a reaction mechanism described</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rdbase_path</strong> (<em>string</em>) – file path to a filled-in database
+the database mut be an ascii-text file and must meet the README-defined format</p></li>
+<li><p><strong>species_list</strong> (<em>string</em>) – list of all species involved in the mechanism</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>S</strong> (<em>numpy.ndarray</em>) – stoichiometric matrix of the mechanism</p></li>
+<li><p><strong>S_lhs</strong> (<em>numpy.ndarray</em>) – (pseudo)stoichiometric matrix describing the left-hand sides of the chemical transformations involved</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-puplasan.noise">
+<span id="puplasan-noise-module"></span><h2>puplasan.noise module<a class="headerlink" href="#module-puplasan.noise" title="Permalink to this headline">¶</a></h2>
+<section id="signal-noise-module">
+<h3>Signal/noise module<a class="headerlink" href="#signal-noise-module" title="Permalink to this headline">¶</a></h3>
+<p>Contains functions for estimation of the data noise level.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.noise.noise_estim_ma">
+<span class="sig-prename descclassname"><span class="pre">puplasan.noise.</span></span><span class="sig-name descname"><span class="pre">noise_estim_ma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.noise.noise_estim_ma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the <em>y</em> data noise level by calculating the noise for <em>m</em>
+short subarrays (of length equal to <em>n</em>) randomly selected
+from the <em>y</em> array. The resulting noise level corresponds to the minimal
+value of the standard deviations calculated for all short subarrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array containing both noise as well as signal</p></li>
+<li><p><strong>wpn</strong> (<em>int</em>) – Number of the adjacent values of <em>y</em> averaged.
+<em>wpn</em> must be an odd number.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – length of the randomly selected subarray used for calculation
+of the local noise level</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of the randomly selected subarrays (defaul value is 10)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>estimated noise level of the <em>y</em> data</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.noise.noise_estim_ma_xdependent">
+<span class="sig-prename descclassname"><span class="pre">puplasan.noise.</span></span><span class="sig-name descname"><span class="pre">noise_estim_ma_xdependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partnum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulloutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.noise.noise_estim_ma_xdependent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the <em>x</em>-dependent <em>y</em> data noise level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent input data. Must be increasing.</p></li>
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array containing both noise as well as signal, must be of the same
+length as <em>x</em>.</p></li>
+<li><p><strong>wpn</strong> (<em>int</em>) – Number of the adjacent values of <em>y</em> averaged.
+<em>wpn</em> must be an odd number.</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – length of the randomly selected subarray used for calculation
+of the local noise level</p></li>
+<li><p><strong>partnum</strong> (<em>int</em>) – number of equidistant points for which the <em>x</em>-dependent
+noise is calculated</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – number of the randomly selected subarrays used for calculation
+of the local noise level (defaul value is 10)</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – Degree of the smoothing spline. Must be &lt;= 5. Default is k=1,
+a linear spline.</p></li>
+<li><p><strong>fulloutput</strong> (<em>bool</em>) – Influences the output (see the <em>Returns</em> section).
+Default value is <em>False</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>If *fulloutput</em> is <em>True</em>, returns*</p></li>
+<li><p><em>numpy.array</em> – array of the same length as <em>x</em> containing the <em>x</em>-dependent
+<em>y</em> data noise level</p></li>
+<li><p><em>instance of the *scipy.interpolate.fitpack2.LSQUnivariateSpline</em> class*</p></li>
+<li><p><em>list</em> – x-values (positions) of the calculated noise
+(list of length equal to <em>partnum</em>)</p></li>
+<li><p><em>list</em> – list of <em>x</em>-dependent <em>y</em> data noise corrresponding
+to the previous output</p></li>
+<li><p><em>Else returns a numpy.array of the same length as *x</em> containing*</p></li>
+<li><p><em>the *x</em>-dependent <em>y</em> data noise.*</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.noise.std_ma">
+<span class="sig-prename descclassname"><span class="pre">puplasan.noise.</span></span><span class="sig-name descname"><span class="pre">std_ma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noisedata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wpn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.noise.std_ma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the standard deviation of the difference between <em>noisedata</em>
+array and its moving average.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>noisedata</strong> (<em>1-D list/array</em>) – array containing noise without signal.</p></li>
+<li><p><strong>wpn</strong> (<em>int</em>) – Number of the adjacent values of <em>noisedata</em> averaged.
+<em>wpn</em> must be an odd number.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>Returns standard deviation of the difference between *noisedata*</em></p></li>
+<li><p><em>array and its moving average (the standard deviation of the base line</em></p></li>
+<li><p><em>corrected data with no signal).</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.pbase">
+<span id="puplasan-pbase-module"></span><h2>puplasan.pbase module<a class="headerlink" href="#module-puplasan.pbase" title="Permalink to this headline">¶</a></h2>
+<p>Module for management of the spectral lines database.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">puplasan.pbase.</span></span><span class="sig-name descname"><span class="pre">PBase</span></span><a class="headerlink" href="#puplasan.pbase.PBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is resposible for managing the spectral lines and atomic
+energy transitions data (e.g. level energies, g-factors,
+transition Eistein coefficients, line positions, intensities etc.)</p>
+<p>The data are stored in a sqlite3 database file.</p>
+<p>Tables’ structure:</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">specie</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>integer</p></td>
+<td><p>specie id number</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>text</p></td>
+<td><p>specie name (e.g. “Fe I”)</p></td>
+</tr>
+<tr class="row-even"><td><p>charge</p></td>
+<td><p>integer</p></td>
+<td><p>specie charge (e.g. 0, 1, 2…)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>following SQL constraints are applied:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>id is a primary key, autoincrement</p></li>
+<li><p>UNIQUE(name, charge) ON CONFLICT IGNORE</p></li>
+</ul>
+</div>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">level</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>integer</p></td>
+<td><p>level id number</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_specie</p></td>
+<td><p>integer</p></td>
+<td><p>id of the specie</p></td>
+</tr>
+<tr class="row-even"><td><p>el_conf</p></td>
+<td><p>text</p></td>
+<td><p>electron configuration (e.g. 3s2.3p)</p></td>
+</tr>
+<tr class="row-odd"><td><p>term</p></td>
+<td><p>text</p></td>
+<td><p>spectroscopic term (e.g. 2P*)</p></td>
+</tr>
+<tr class="row-even"><td><p>j</p></td>
+<td><p>text</p></td>
+<td><p>total ang. momentum quant. num. (e.g. 1/2)</p></td>
+</tr>
+<tr class="row-odd"><td><p>en</p></td>
+<td><p>real</p></td>
+<td><p>level energy [cm-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>g</p></td>
+<td><p>real</p></td>
+<td><p>g-factor</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref</p></td>
+<td><p>text</p></td>
+<td><p>reference</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>following SQL constraints are applied:
+- UNIQUE(id_specie, el_conf, term, j) ON CONFLICT REPLACE
+- id is a primary key, autoincrement
+- id_specie is a foreign key</p>
+</div>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">transition</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>integer</p></td>
+<td><p>transition id number</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_specie</p></td>
+<td><p>integer</p></td>
+<td><p>id of the specie</p></td>
+</tr>
+<tr class="row-even"><td><p>id_level_low</p></td>
+<td><p>integer</p></td>
+<td><p>id of the lower energy level</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_level_upp</p></td>
+<td><p>integer</p></td>
+<td><p>id of the upper energy level</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelength</p></td>
+<td><p>real</p></td>
+<td><p>transtion wavelength [nm]</p></td>
+</tr>
+<tr class="row-odd"><td><p>aij</p></td>
+<td><p>real</p></td>
+<td><p>Einstein coefficient [s-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>ref</p></td>
+<td><p>text</p></td>
+<td><p>references</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>following SQL constraints are applied:
+- UNIQUE(id_specie, id_level_low, id_level_upp) ON CONFLICT REPLACE
+- id is a primary key, autoincrement
+- id_specie, id_level_low and id_level_upp are foreign keys</p>
+</div>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">peak</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>integer</p></td>
+<td><p>peak id number</p></td>
+</tr>
+<tr class="row-odd"><td><p>specfile</p></td>
+<td><p>text</p></td>
+<td><p>spectrum file name</p></td>
+</tr>
+<tr class="row-even"><td><p>pos</p></td>
+<td><p>real</p></td>
+<td><p>peak position [nm] (from peak picking)</p></td>
+</tr>
+<tr class="row-odd"><td><p>high</p></td>
+<td><p>real</p></td>
+<td><p>peak high [arb. u.] (from peak picking)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>id is a primary key</p></li>
+</ul>
+</div>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">peakpar</span><a class="headerlink" href="#id9" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_peak</p></td>
+<td><p>integer</p></td>
+<td><p>id of the peak</p></td>
+</tr>
+<tr class="row-odd"><td><p>parname</p></td>
+<td><p>text</p></td>
+<td><p>fitted peak param. name (e.g. fwhm_gauss)</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>real</p></td>
+<td><p>fitted peak param. value</p></td>
+</tr>
+<tr class="row-odd"><td><p>error</p></td>
+<td><p>real</p></td>
+<td><p>fitted peak param. error</p></td>
+</tr>
+<tr class="row-even"><td><p>desc</p></td>
+<td><p>text</p></td>
+<td><p>fitted peak param. description</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>following SQL constraints are applied:
+- id_peak is a foreign key
+- UNIQUE(id_peak, parname) ON CONFLICT REPLACE</p>
+</div>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">assignment</span><a class="headerlink" href="#id10" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 16%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>column name</p></th>
+<th class="head"><p>data type</p></th>
+<th class="head"><p>descrip./exmple</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id_peak</p></td>
+<td><p>integer</p></td>
+<td><p>id of the peak</p></td>
+</tr>
+<tr class="row-odd"><td><p>id_transition</p></td>
+<td><p>integer</p></td>
+<td><p>id of the transition</p></td>
+</tr>
+<tr class="row-even"><td><p>prob</p></td>
+<td><p>real</p></td>
+<td><p>assignment probability</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>following SQL constraints are applied:
+- UNIQUE(id_peak, id_transition) ON CONFLICT REPLACE</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the database connection.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>this method must be called at the end of the program if a database
+file was connected</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbfilen</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect the database file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_assignment">
+<span class="sig-name descname"><span class="pre">set_assignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_transition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_assignment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_level">
+<span class="sig-name descname"><span class="pre">set_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_specie</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el_conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">en</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_peak">
+<span class="sig-name descname"><span class="pre">set_peak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_peak" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_peakpar">
+<span class="sig-name descname"><span class="pre">set_peakpar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_peakpar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_specie">
+<span class="sig-name descname"><span class="pre">set_specie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_specie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set/add a record to the <em>specie</em> table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the specie (e.g. “Fe I”).</p></li>
+<li><p><strong>charge</strong> (<em>int</em>) – The charge of the specie (e.g. 0 for Fe I, 1 for Fe II).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.set_transition">
+<span class="sig-name descname"><span class="pre">set_transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_specie</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_level_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_level_upp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aij</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.set_transition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pbase.PBase.sql_exec">
+<span class="sig-name descname"><span class="pre">sql_exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sqlstr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fetchall</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.PBase.sql_exec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pbase.gen_empty_db">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pbase.</span></span><span class="sig-name descname"><span class="pre">gen_empty_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dbfilen</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pbase.gen_empty_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate an empty database file named <em>dbfilen</em></p>
+</dd></dl>
+
+</section>
+<section id="module-puplasan.pdetect">
+<span id="puplasan-pdetect-module"></span><h2>puplasan.pdetect module<a class="headerlink" href="#module-puplasan.pdetect" title="Permalink to this headline">¶</a></h2>
+<section id="peak-detection-module">
+<h3>Peak detection module<a class="headerlink" href="#peak-detection-module" title="Permalink to this headline">¶</a></h3>
+<p>This module contains functions (especially the <em>detect</em> function)
+for detection peaks in the experimental data (e.g. UV/VIS spectrum).</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pdetect.detect">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pdetect.</span></span><span class="sig-name descname"><span class="pre">detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr_thr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ptype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'up'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fulloutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pdetect.detect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detect peaks’ positions and highs in the input data arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent input data. Must be increasing.</p></li>
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array of dependent input data, of the same length as <em>x</em>.</p></li>
+<li><p><strong>noise</strong> (<em>float/array</em>) – noise of the <em>y</em> data (if array - it is x-dependent noise)</p></li>
+<li><p><strong>snr_thr</strong> (<em>float</em>) – the high threshold of the peak selection
+is calculated as <em>noise</em> * <em>snr_thr</em></p></li>
+<li><p><strong>ptype</strong> (<em>str</em>) – only acceptable values are “up” (detection of local maxima)
+and “down” (detection of local minima)</p></li>
+<li><p><strong>fulloutput</strong> (<em>bool</em>) – Influence the output (see the <em>Returns</em> section).
+Default value is <em>False</em>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>If *fulloutput</em> is set to <em>True</em> numpy.array of local extrema positions*</p></li>
+<li><p><em>(values from *x</em>), numpy.array of local extrema highs (values from <em>y</em>)*</p></li>
+<li><p><em>and numpy.array of *x</em>’s indexes where the local extrema are dedected*</p></li>
+<li><p><em>is returned.</em></p></li>
+<li><p><em>Else numpy.array of local extrema positions (values from *x</em>) and*</p></li>
+<li><p><em>numpy.array of local extrema highs (values from *y</em>) is returned.*</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pdetect.detectThr_inds">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pdetect.</span></span><span class="sig-name descname"><span class="pre">detectThr_inds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ptype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'up'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pdetect.detectThr_inds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the indexes of <em>y</em> where the values are higher (ptype=”up”)
+or lower (ptype=”down”) than <em>thr</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array of input data.</p></li>
+<li><p><strong>thr</strong> (<em>float/array</em>) – selection threshold (if array - it is x-dependent threshold)</p></li>
+<li><p><strong>ptype</strong> (<em>str</em>) – only acceptable values are “up” (selects indexes of values
+higher than <em>thr</em>)
+and “down” (selects indexes of values lower than <em>thr</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the indexes of <em>y</em> where the values
+are higher (ptype=”up”) or lower (ptype=”down”) than <em>thr</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pdetect.detectTop_inds">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pdetect.</span></span><span class="sig-name descname"><span class="pre">detectTop_inds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ptype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'up'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pdetect.detectTop_inds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the indexes of <em>y</em> where the top of a peak is detected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>1-D list/array</em>) – array of input data.</p></li>
+<li><p><strong>ptype</strong> (<em>str</em>) – only acceptable values are “up” (detection of local maxima)
+and “down” (detection of local minima)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the indexes of <em>y</em> where the top
+of a peak is detected</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-puplasan.pfit">
+<span id="puplasan-pfit-module"></span><h2>puplasan.pfit module<a class="headerlink" href="#module-puplasan.pfit" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">PeakModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gauss'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.PeakModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provides methods to model single/multi peak profiles.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel.calc_fit_error">
+<span class="sig-name descname"><span class="pre">calc_fit_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars_flat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.PeakModel.calc_fit_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the objective function value used by
+a fitting function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars_flat</strong> (<em>list/tuple of floats</em>) – profile model parameters in the following format:
+[par_i_peak_j, par_i+1_peak_j, par_i+2_peak_j…
+par_i_peak_j+1, par_i+1_peak_j+1… par_n_peak_m]
+where “par_i_peak_j” refers to the ith parameter
+of the jth peak of the profile model, the peak number
+as well as the numper of the parameters of each peak must be
+in agreement with the internal peak model (this list can be
+generated by <em>get_flat_pars</em> method)</p></li>
+<li><p><strong>datax</strong> (<em>1-D list/array</em>) – array of independent variable values. Must be increasing.</p></li>
+<li><p><strong>datay</strong> (<em>1-D list/array</em>) – array of dependent variable values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>err</strong> (<em>float</em>) – the difference between the model profile and the <em>datay</em> parameter,
+the value is calculated es follows:
+np.sqrt(sum((self.gen_profile(datax) - datay)**2))</p></li>
+<li><p><em>.. warning::</em> – by calling this method the internal model parameters are rewriten
+according to the input parameter <em>pars_flat</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel.gen_profile">
+<span class="sig-name descname"><span class="pre">gen_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.PeakModel.gen_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the profile of multiple (possibly overlapped) peaks.
+The resulting profile is calculated as a sum of several
+peak-like profiles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent input data. Must be increasing.</p></li>
+<li><p><strong>full_output</strong> (<em>bool</em>) – if True: returns array containing the resulting multi-peak profile
+as well as the profiles of the individual functions
+(e.g. gaussians)
+else: returns array containing the resulting multi-peak profile</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the resulting multi-peak profile
+corresponding to the indepentent variable <em>x</em>
+(and a list of the profiles of the individual functions
+(e.g. gaussians) (only if the full_output is set to True))</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel.get_flat_pars">
+<span class="sig-name descname"><span class="pre">get_flat_pars</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.PeakModel.get_flat_pars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns internal peak model parameters in a single flat list
+(used as an input partameter of the <em>calc_fit_error</em> method)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>pars</strong> – model parameters in a single flat list with the following format:
+[par_i_peak_j, par_i+1_peak_j, par_i+2_peak_j…
+par_i_peak_j+1, par_i+1_peak_j+1… par_n_peak_m]
+where “par_i_peak_j” refers to the ith parameter
+of the jth peak of the profile model</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list of floats</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel.profiles">
+<span class="sig-name descname"><span class="pre">profiles</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'gauss':</span> <span class="pre">&lt;function</span> <span class="pre">gauss&gt;,</span> <span class="pre">'lorentz':</span> <span class="pre">&lt;function</span> <span class="pre">lorentz&gt;,</span> <span class="pre">'pseudovoigt':</span> <span class="pre">&lt;function</span> <span class="pre">pseudovoigt&gt;}</span></em><a class="headerlink" href="#puplasan.pfit.PeakModel.profiles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="puplasan.pfit.PeakModel.set_flat_pars">
+<span class="sig-name descname"><span class="pre">set_flat_pars</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.PeakModel.set_flat_pars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal peak parameters of the profile model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>list of floats</em>) – model parameters in a single flat list with the following format:
+[par_i_peak_j, par_i+1_peak_j, par_i+2_peak_j…
+par_i_peak_j+1, par_i+1_peak_j+1… par_n_peak_m]
+where “par_i_peak_j” refers to the ith parameter
+of the jth peak of the profile model, the peak number
+as well as the numper of the parameters of each peak must be
+in agreement with the internal peak model</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.area_estim">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">area_estim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.area_estim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the peak are from the peak high and fwhm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>high</strong> (<em>float</em><em> or </em><em>numpy.array</em>) – peak high</p></li>
+<li><p><strong>fwhm</strong> (<em>float</em><em> or </em><em>numpy.array</em>) – peak fwhm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>peak area estimated as <em>high</em> * <em>fwhm</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>area</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.detect_peak_groups">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">detect_peak_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.detect_peak_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates groups of peaks which are so close each to other that they
+can be overlapped.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>px</strong> (<em>1-D list/array</em>) – array of the peak positions (obtained by a peak picking method)</p></li>
+<li><p><strong>d</strong> (<em>float/callable</em>) – if float, it is the distance threshold (peaks which are closer to each
+other are grouped), if callable, it is a function with one input
+parameter (the peak position (float)) which returns the distance
+threshold expressed as a function of the independent variable
+corresponding to <em>px</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>groups</strong> – list describing the grouping of the peaks accordind their mutual
+distances, the format is following:
+[[(i0, v0), (i1, v1)…], [(in, vn), (in+1, vn+1)…]…], where each
+nested list represent a group of mutually close peaks and each tuple
+in these lists contains index of an element of the input parameter
+<em>px</em> and the corresponding value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of lists of tuples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.gauss">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">gauss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.gauss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Gaussian profile function from the input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent variable values. Must be increasing.</p></li>
+<li><p><strong>mu</strong> (<em>float</em>) – peak center position</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – peak area</p></li>
+<li><p><strong>fwhm</strong> (<em>float</em>) – peak full width at half maximum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the Gaussian peak profile
+corresponding to the indepentent variable <em>x</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.lorentz">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">lorentz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.lorentz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Lorentzian profile function from the input parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent variable values. Must be increasing.</p></li>
+<li><p><strong>mu</strong> (<em>float</em>) – peak center position</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – peak area</p></li>
+<li><p><strong>fwhm</strong> (<em>float</em>) – peak full width at half maximum</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the Lorentzian peak profile
+corresponding to the indepentent variable <em>x</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.peak_model">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">peak_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">px</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">py</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pl_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[200.0,</span> <span class="pre">212.0,</span> <span class="pre">-</span> <span class="pre">0.07,</span> <span class="pre">0.6]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.peak_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a fit of experimental spectrum based on stochastic modeling of small areas optima</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>px</strong> (<em>1-D list/array</em>) – array of the peak positions (obtained by a peak picking method)</p></li>
+<li><p><strong>py</strong> (<em>1-D list/array</em>) – array containing integral intensities of the detected peaks</p></li>
+<li><p><strong>spe</strong> (<em>numpy.array</em>) – array containing the experimental spectrum as sorted onto two lists
+<em>[wl, signal]</em>
+<em>“wl”</em> must be given in units consistent with <em>px</em></p></li>
+<li><p><strong>mode</strong> (<em>string</em>) – mode in which to operate the fit procedure
+values <em>‘isolated’</em> (to treat all peaks as isolated transitions) and <em>‘ifc’</em> (to explicitly include instrumental broadening function into spectral patterns) are allowed</p></li>
+<li><p><strong>pl_range</strong> (<em>list</em>) – list defining the initial spectral area to search on and additional constants as defined above
+by default, <em>pl_range</em> equals <em>[200., 212., -0.07, 0.6]</em></p></li>
+<li><p><strong>step</strong> (<em>float</em>) – iteration step by which the length of a fitted spectrum is enhanced
+<em>step</em> must be unit-consistent with <em>px</em>
+by default, <em>step</em> equals 12</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fit_spect</strong> – y-axis of the fitted/simulated spectrum</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.pseudovoigt">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">pseudovoigt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.pseudovoigt" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Calculates the Pseudo-Voigt (weighted sum of Gaussian and Lorentzian</dt><dd><p>profiles) profile function from the input parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>1-D list/array</em>) – array of independent variable values. Must be increasing.</p></li>
+<li><p><strong>mu</strong> (<em>float</em>) – peak center position</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – peak area</p></li>
+<li><p><strong>fwhm</strong> (<em>float</em>) – peak full width at half maximum</p></li>
+<li><p><strong>s</strong> (<em>float &lt;0</em><em>,</em><em>1&gt;</em>) – peak shape parameter (if <a href="#id1"><span class="problematic" id="id2">*</span></a>s*==0 the profile is pure Gaussian,
+if <a href="#id3"><span class="problematic" id="id4">*</span></a>s*==1 the profile is pure Lorentzian)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array containing the Lorentzian peak profile
+corresponding to the indepentent variable <em>x</em></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.pfit.rsopt">
+<span class="sig-prename descclassname"><span class="pre">puplasan.pfit.</span></span><span class="sig-name descname"><span class="pre">rsopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obfun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[3,</span> <span class="pre">1e-05]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obfun_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obfun_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.pfit.rsopt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-puplasan.rate">
+<span id="puplasan-rate-module"></span><h2>puplasan.rate module<a class="headerlink" href="#module-puplasan.rate" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.distrib_electron">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">distrib_electron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">en</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ne</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.distrib_electron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Approximates the electron energy distribution function based on experimental data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>en</strong> (<em>1-D list/array</em>) – array containing the energies of states within the species expected to be in a dynamic equilibrium with electrons
+<em>en</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>ne</strong> (<em>float</em>) – electron density approximation
+<em>ne</em> must be electron density in reciprocal volume units</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>F</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients (polynomial)</p></li>
+<li><p><strong>f_res</strong> (<em>list</em>) – list of residuals of the least-squares fit</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.eedf">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">eedf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">en</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ne</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.eedf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depicts the Maxwell-Boltzmann electron energy distribution function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>en</strong> (<em>1-D list/array</em>) – array containing the energies of states within the species expected to be in a dynamic equilibrium with electrons
+<em>en</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>ne</strong> (<em>float</em>) – electron density approximation
+<em>ne</em> must be electron density in reciprocal volume units</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>eedf</strong> (<em>numpy.ndarray</em>) – array containing the eedf</p></li>
+<li><p><strong>F</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients (polynomial)</p></li>
+<li><p><strong>f_res</strong> (<em>list</em>) – list of residuals of the least-squares fit</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.rate_deexc">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">rate_deexc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">el</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_exc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eedf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.rate_deexc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rate coefficient of electron impact de-excitation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gu</strong> (<em>1-D list/array</em>) – array containing the upper level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energies of the investigated states within the given species
+<em>eu</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>gl</strong> (<em>1-D list/array</em>) – array containing the lower level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>el</strong> (<em>1-D list/array</em>) – array containing the lower level energies of the investigated states within the given species
+<em>el</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>cross_exc</strong> (<em>1-D list/array</em>) – array containing the electron excitation cross sections
+<em>cross_exc</em> must be cross section in area units</p></li>
+<li><p><strong>eedf</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>K_deexc</strong> (<em>numpy.ndarray</em>) – array containing the electron impact de-excitation rate coefficients</p></li>
+<li><p><strong>K_deexc_stddev</strong> (<em>numpy.ndarray</em>) – array containing the electron impact de-excitation rate coefficients estimation error</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.rate_exc">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">rate_exc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_exc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eedf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.rate_exc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rate coefficient of electron excitation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energies of the investigated states within the given species
+<em>en</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>cross_exc</strong> (<em>1-D list/array</em>) – array containing the electron excitation cross sections
+<em>cross_exc</em> must be cross section in area units</p></li>
+<li><p><strong>eedf</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>K_exc</strong> (<em>numpy.ndarray</em>) – array containing the electron excitation rate coefficients</p></li>
+<li><p><strong>K_exc_stddev</strong> (<em>numpy.ndarray</em>) – array containing the electron excitation rate coefficients estimation error</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.rate_ion">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">rate_ion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_ion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eedf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.rate_ion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rate coefficient of electron impact ionization</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gu</strong> (<em>1-D list/array</em>) – array containing the upper level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energies of the investigated states within the given species
+<em>eu</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>cross_ion</strong> (<em>1-D list/array</em>) – array containing the electron impact ionization cross sections
+<em>cross_ion</em> must be cross section in area units</p></li>
+<li><p><strong>eedf</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>K_ion</strong> (<em>numpy.ndarray</em>) – array containing the electron impact ionization rate coefficients</p></li>
+<li><p><strong>K_ion_stddev</strong> (<em>numpy.ndarray</em>) – array containing the electron impact ionization rate coefficients estimation error</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.rate_radrec">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">rate_radrec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">en_ion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eedf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.rate_radrec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rate coefficient of radiative recombination</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energies of the investigated states within the given species
+<em>eu</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>gu</strong> (<em>1-D list/array</em>) – array containing the upper level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>mu</strong> (<em>1-D list/array</em>) – array containing the transition peak positions within the given species
+<em>mu</em> must be wavelength in nanometers</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>Z</strong> (<em>float/integer</em>) – ionization state of the species (1, 2, … n)</p></li>
+<li><p><strong>a0</strong> (<em>float</em>) – covalent radius (Bohr radius in case of atoms) of the species
+<em>a0</em> must be dimension in metres</p></li>
+<li><p><strong>cross_ion</strong> (<em>1-D list/array</em>) – array containing the electron impact ionization cross sections
+<em>cross_ion</em> must be cross section in area units</p></li>
+<li><p><strong>en_ion</strong> (<em>float</em>) – ionization energy of the given state
+<em>en_ion</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>eedf</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>K_radrec</strong> (<em>numpy.ndarray</em>) – array containing the radiative recombination rate coefficients</p></li>
+<li><p><strong>K_tarec_stddev</strong> (<em>numpy.ndarray</em>) – array containing the radiative recombination rate coefficients estimation error</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.rate_rec">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">rate_rec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_ion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">en_ion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eedf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.rate_rec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the rate coefficient of three-body recombination</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eu</strong> (<em>1-D list/array</em>) – array containing the upper level energies of the investigated states within the given species
+<em>eu</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>gu</strong> (<em>1-D list/array</em>) – array containing the upper level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>gl</strong> (<em>1-D list/array</em>) – array containing the lower level degeneracies of the investigated states within the given species</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – plasma temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>cross_ion</strong> (<em>1-D list/array</em>) – array containing the electron impact ionization cross sections
+<em>cross_ion</em> must be cross section in reciprocal area units</p></li>
+<li><p><strong>en_ion</strong> (<em>float</em>) – ionization energy of the given state
+<em>en_ion</em> must be wavenumber in reciprocal centimetres</p></li>
+<li><p><strong>q_f</strong> (<em>float</em>) – partition function of the final state of the species (e. g. neutral atom for a single-ionized atomic ion)</p></li>
+<li><p><strong>eedf</strong> (<em>numpy.poly1d</em>) – list of eedf fitting coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>K_rec</strong> (<em>numpy.ndarray</em>) – array containing the three-body recombination rate coefficients</p></li>
+<li><p><strong>K_rec_stddev</strong> (<em>numpy.ndarray</em>) – array containing the three-body recombination rate coefficients estimation error</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rate.vel_par">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rate.</span></span><span class="sig-name descname"><span class="pre">vel_par</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">T_SI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T_SII</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.109e-31</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SII'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rate.vel_par" title="Permalink to this definition">¶</a></dt>
+<dd><p>Depicts the Maxwell-Boltzmann distribution of the thermal electron velocity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>T_SI</strong> (<em>float</em>) – excitation temperature of neutral species
+<em>T_SI</em> must be temperature in kelvins</p></li>
+<li><p><strong>T_SII</strong> (<em>float</em>) – excitation temperature of once ionized species
+<em>T_SII</em> must be temperature in kelvins</p></li>
+<li><p><strong>m</strong> (<em>float</em>) – mass of the reactive (transferred) species
+<em>m</em> must be mass in kilograms
+by default, <em>m</em> equals <em>me</em></p></li>
+<li><p><strong>sample</strong> (<em>string</em>) – Determines the species which is expected to be in a dynamic equilibrium with the reactive (transferred) species
+Default value is <em>‘SII’</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>v</strong> – most probable translation velocity given for thermal electrons in considered system
+<em>v</em> is estimated in m/s</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-puplasan.rte">
+<span id="puplasan-rte-module"></span><h2>puplasan.rte module<a class="headerlink" href="#module-puplasan.rte" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.Aij_rv">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">Aij_rv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ju</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Jl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.Aij_rv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates an Einstein A coefficient for given rovibrational transitions based on their dipole moments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>numpy.array</em>) – frequency of investigated transition(s)
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>Ju</strong> (<em>numpy.array</em>) – upper level rotational quantum number</p></li>
+<li><p><strong>Jl</strong> (<em>numpy.array</em>) – lower level rotational quantum number</p></li>
+<li><p><strong>D</strong> (<em>float</em>) – dipole moment of given transitions
+<em>D</em> must be dipole moment in coulomb-meters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Aul</strong> – array containing resultant Einstein coefficients
+<em>Aul</em> is Einstein coefficient in reciprocal seconds</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.abs_Aij">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">abs_Aij</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Aij</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.abs_Aij" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an absorption cross section calculated from the Einstein A coefficient</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>float OR numpy.array</em>) – frequency of investigated transition(s)
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>Aij</strong> (<em>float OR numpy.array</em>) – Einstein A coefficient of investigated transition(s)
+<em>Aij</em> must be frequency in reciprocal seconds</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma</strong> – absorption cross section of the given species
+<em>sigma</em> is cross section in square meters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float OR numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.abs_muij">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">abs_muij</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.abs_muij" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an absorption cross section calculated from the transition dipole moment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>D2</strong> (<em>float OR numpy.array</em>) – squared transition dipole moment of invenstigated transtions
+<em>D2</em> must be squared dipole moment in atomic units</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma</strong> – absorption cross section of the given species
+<em>sigma</em> is cross section in square meters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float OR numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.attenuation">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">attenuation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.attenuation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an attenuation coefficient of either species</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma</strong> (<em>float OR numpy.array</em>) – absorption cross section of investigated transition(s)
+<em>sigma</em> must be a cross section in square meters</p></li>
+<li><p><strong>N</strong> (<em>float OR numpy.array</em>) – number density ascribed to the lower energy level of investigated transition(s)
+<em>N</em> must be number density in reciprocal cubic meters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>alpha</strong> – attenuation coefficient
+<em>alpha</em> is given in reciprocal meters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float OR numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.boltz">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">boltz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q_T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.boltz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Boltzmann equilibrium abundance of absorbing/emitting species</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>N0</strong> (<em>float</em>) – total number density of the species
+<em>N0</em> must be number density in reciprocal cubic meters</p></li>
+<li><p><strong>gj</strong> (<em>numpy.array</em>) – array containing lower level degeneracies of the investigated species</p></li>
+<li><p><strong>Ej</strong> (<em>numpy.array</em>) – array containing lower level energies of the investigated species
+<em>Ej</em> must be formal wavenumber in reciprocal centimeters</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – equilibrium temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>Q_T</strong> (<em>numpy.poly1d</em>) – list of Q(T) polynomial fitting coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>N</strong> – array evaluating the number densities against given energy levels</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.doppler_fwhm">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">doppler_fwhm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm-1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.doppler_fwhm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates on the formal Doppler broadening of given absorption/emission transitions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>float OR numpy.array</em>) – frequency of given transition(s)
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>m</strong> (<em>float</em>) – nominal mass of the investigated species
+<em>m</em> must be mass in kilograms</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – equilibrium temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>units</strong> (<em>string</em>) – string defining the units of desider output
+<em>‘cm-1’</em> and <em>‘nm’</em> are allowed inputs
+by default, <em>units</em> equals <em>‘cm-1’</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mu</strong> (<em>float OR numpy.array</em>) – peak centre of the investigated transition(s)
+<em>mu</em> is given in specified <em>units</em></p></li>
+<li><p><strong>fwhm</strong> (<em>float OR numpy.array</em>) – formal FWHM of the investigated transition(s) absorption/emission coefficients
+<em>fwhm</em> is given in specified <em>units</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.emission">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">emission</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.emission" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an emission coefficient of either species</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>float OR numpy.array</em>) – attenuation coefficient
+<em>alpha</em> must be given in reciprocal meters</p></li>
+<li><p><strong>nu</strong> (<em>float OR numpy.array</em>) – frequency of investigated transition(s)
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – equilibrium temperature
+<em>T</em> must be temperature in kelvins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j</strong> – emission coefficient
+<em>j</em> is given in J per square meter</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float OR numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.planck">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">planck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.planck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the black-body spectral radiance profile parametrized by constant temperature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nu</strong> (<em>float OR numpy.array</em>) – emission frequency
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – equilibrium temperature
+<em>T</em> must be temperature in kelvins</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>Bv</strong> – black-body spectral radiance profile</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="puplasan.rte.rte_block">
+<span class="sig-prename descclassname"><span class="pre">puplasan.rte.</span></span><span class="sig-name descname"><span class="pre">rte_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">I0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadening</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm-1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#puplasan.rte.rte_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a simpler RTE solution in a homogeneous isotropic medium of temperature <em>T</em> and optical length <em>ell</em></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wn</strong> (<em>numpy.array</em>) – frequency axis of a spectrum measured at zero position</p></li>
+<li><p><strong>I0</strong> (<em>numpy.array</em>) – nominal intensity of a source (x = 0)
+<em>I0</em> must be intensity in watts per square meter</p></li>
+<li><p><strong>T</strong> (<em>float</em>) – equilibrium temperature
+<em>T</em> must be temperature in kelvins</p></li>
+<li><p><strong>ell</strong> (<em>float</em>) – optical length of the medium
+<em>ell</em> must be length in meters</p></li>
+<li><p><strong>nu</strong> (<em>numpy.array</em>) – frequency of given transition(s)
+<em>nu</em> must be frequency in reciprocal seconds</p></li>
+<li><p><strong>alpha</strong> (<em>numpy.array</em>) – attenuation coefficient of given transitions
+<em>alpha</em> must be given in reciprocal meters</p></li>
+<li><p><strong>broadening</strong> (<em>string</em>) – string defining a chosen broadening profile
+<em>‘gauss’</em>, <em>‘lorentz’</em> and <em>‘pseudovoigt’</em> are allowed values</p></li>
+<li><p><strong>units</strong> (<em>string</em>) – string defining the units of desider output
+<em>‘cm-1’</em> and <em>‘nm’</em> are allowed values
+by default, <em>units</em> equals <em>‘cm-1’</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mu</strong> (<em>float OR numpy.array</em>) – peak centre of the investigated transition(s)
+<em>mu</em> is given in specified <em>units</em></p></li>
+<li><p><strong>fwhm</strong> (<em>float OR numpy.array</em>) – formal FWHM of the investigated transition(s) absorption/emission coefficients
+<em>fwhm</em> is given in specified <em>units</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-puplasan">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-puplasan" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PuPlasAn</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ReadMe.html">PuPlasAn (Pulsed Plasma Analyser)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">puplasan</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">puplasan package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">puplasan</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">puplasan</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Vojtěch Laitl.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/puplasan.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
