@@ -1,5 +1,8 @@
-# PuPlasAn (**Pu**lsed **Plas**ma **An**alyser)
-## Public ReadMe
+# [PuPlasAn](https://raw.githack.com/laitvo/PuPlasAn/main/docs/build/html/index.html) (**Pu**lsed **Plas**ma **An**alyser)
+
+The documentation to PuPlasAn is available via the [program website](https://raw.githack.com/laitvo/PuPlasAn/main/docs/build/html/index.html).
+
+## Quick ReadMe
 
 The program is responsible for a complete numerical analysis of pulsed plasma spectra, i. e. filtering (`filters.py`), estimating noise level (`noise.py`) and spectral baseline (`bline.py`), and detecting spectral lines and/or bands (`pdetect.py`). The peaks detected may then undergo deterministic or stochastic numerical fitting of line or band profiles (`pfit.py`). Optical depth and spectral line broadening issues may be dealt with by using `broad.py`.
 
@@ -11,6 +14,4 @@ Finally, `rate.py` and `mechanism.py` calculate reaction rate coefficients based
 The program was developed by Petr Kubelík, Ph. D., and Vojtěch Laitl at the J. Heyrovský Institute of Physical Chemistry, Czech Academy of Sciences, in 2022 . From there on, it is distributed under Apache License 2.0. All details to particular functions and program modules are to be found in the above code scripts and in the example section.
 
 ## Dependencies
-The program scripts above are to be found in [*/puplasan*](https://github.com/laitvo/PuPlasAn/tree/main/puplasan) and are elaborated in [*/example*](https://github.com/laitvo/PuPlasAn/tree/main/example) folders, respectively. Complete documentation is shown in [*/package/docs/build/html*](https://github.com/laitvo/PuPlasAn/tree/main/docs/build/html) folder and may be viewed by running [`index.html`](https://htmlpreview.github.io/?https://github.com/laitvo/PuPlasAn/blob/main/docs/build/html/index.html).
-
-Available via [Index Page](https://raw.githack.com/laitvo/PuPlasAn/main/docs/build/html/index.html).
+The program scripts above are to be found in [*/puplasan*](https://github.com/laitvo/PuPlasAn/tree/main/puplasan) and are elaborated in [*/example*](https://github.com/laitvo/PuPlasAn/tree/main/example) folders, respectively. Complete documentation is shown in [*/package/docs/build/html*](https://github.com/laitvo/PuPlasAn/tree/main/docs/build/html) folder. We recommend that the user download the documentation alongside the program scripts.
