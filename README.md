@@ -12,3 +12,5 @@ The program was developed by Petr Kubelík, Ph. D., and Vojtěch Laitl at the J.
 
 ## Dependencies
 The program scripts above are to be found in [*/puplasan*](https://github.com/laitvo/PuPlasAn/tree/main/puplasan) and are elaborated in [*/example*](https://github.com/laitvo/PuPlasAn/tree/main/example) folders, respectively. Complete documentation is shown in [*/package/docs/build/html*](https://github.com/laitvo/PuPlasAn/tree/main/docs/build/html) folder and may be viewed by running [`index.html`](https://htmlpreview.github.io/?https://github.com/laitvo/PuPlasAn/blob/main/docs/build/html/index.html).
+
+Available via [Index Page](https://raw.githack.com/laitvo/PuPlasAn/main/docs/build/html/index.html).
