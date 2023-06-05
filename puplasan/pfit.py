@@ -15,7 +15,7 @@ Peak profile fitting module
 Contains functions for fitting the peaks profiles. The peak fitting
 is performed by *rsopt* function which is based on random rearch algorithm
 and is able to fit a model composed by multiple (possibly overlapping)
-peaks represented by an instance of the :class:`ablator.pfit.PeakModel` class.
+peaks represented by an instance of the :class:`puplasan.pfit.PeakModel` class.
 This function is applicable also for single peak fitting.
 """
 
