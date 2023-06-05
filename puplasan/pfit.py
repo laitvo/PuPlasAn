@@ -22,6 +22,56 @@ This function is applicable also for single peak fitting.
 def rsopt(obfun, bounds, msteps=50, fsteps=100, tsteps=500, focus=0.5,
           ftol=[3, 1.e-5], obfun_args=(), obfun_kwargs={}, callback=None,
           callback_args=(), callback_kwargs={}):
+    """Casts a randomised algorithm onto peak profile searching
+
+    Parameters
+    ----------
+    obfun : instance
+        instance resulting from the objective function to be minimised onto a peak profile
+    bounds : list
+        list containing respectively [*lower*, ⋅] and [⋅, *upper*] bounds to a peak profile
+    msteps : int
+        the number of minimisation steps to be taken within an iteration
+        by default, *msteps* equals *50*
+    fsteps : int
+        the number of steps taken to focus the searching algorithm
+        by default, *fsteps* equals *100*
+    tsteps : int
+        the number of testing/trial steps to the algorithm
+        *tsteps* must be > *fsteps*
+        
+        if *tsteps* < *fsteps*,
+            a UserException is raised
+
+        by default, *tsteps* equals *500*
+
+    ftol : list of type [int, float]
+        list containing respectively [*initial maximum iterations*, ⋅] and [⋅, *tolerance threshold*] characteristics
+        by default, *ftol* equals *[3, 1e-05]*
+    obfun_args : tuple
+        additional arguments to the *obfun* objective function
+        by default, *obfun_args* equals *()*
+    obfun_kwargs : dict
+        additional keyword arguments to the *obfun* objective function
+        by default, *obfun_kwargs* equals *{}*
+    callback : instance
+        arbitrary callback function
+        by default, callback is *NoneType*'d
+    callback_args : tuple
+        additional arguments to the *callback* function
+        by default, *callback_args* equals *()*
+    callback_kwargs : dict
+        additional keyword arguments to the *callback* function
+        by default, *callback_kwargs* equals *{}*
+
+    Returns
+    -------
+    best_pars : numpy.array
+        array containing the best fitting peak parameters
+    fold : float
+        converge threshold achieved
+    """
+
     if fsteps >= tsteps:
         raise Exception('tsteps must be greater than fsteps ' +
                         '(current values: fsteps = %d, ' +
