@@ -423,7 +423,7 @@ def peak_model(px, py, spe, mode, pl_range= [200., 212., -0.07, 0.6], step=12):
     py : 1-D list/array
         array containing integral intensities of the detected peaks
     spe : numpy.array
-        array containing the experimental spectrum as sorted onto two lists
+        array containing the experimental spectrum as sorted onto two columns of
         *[wl, signal]*
         *"wl"* must be given in units consistent with *px*
     mode: string
